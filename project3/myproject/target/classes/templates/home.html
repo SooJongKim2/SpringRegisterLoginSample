@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>홈</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>홈</h1>
+        <p>환영합니다, <span th:text="${user.username}"></span>!</p>
+        <p>이메일: <span th:text="${user.email}"></span></p>
+        <p>접속 IP: <span th:text="${remoteAddr}"></span></p>
+        <p>접속 헤더: <span th:text="${userAgent}"></span></p>
+        <a href="/logout" class="btn btn-primary">로그아웃</a>
+        <form action="/withdraw" method="post" class="mt-4">
+            <button type="submit" class="btn btn-danger">회원탈퇴</button>
+        </form>
+    </div>
+</body>
+</html>

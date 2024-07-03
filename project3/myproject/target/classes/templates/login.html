@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>로그인</h1>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="username">아이디:</label>
+                <input type="text" id="username" name="username" class="form-control" required>
+            </div>
+            <div class="form-group">
+                <label for="password">비밀번호:</label>
+                <input type="password" id="password" name="password" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">로그인</button>
+        </form>
+        <p class="text-danger mt-3" th:if="${param.error}">아이디 또는 비밀번호가 올바르지 않습니다.</p>
+        
+        <div class="mt-4">
+            <p>아직 회원이 아니신가요?</p>
+            <a href="/register" class="btn btn-secondary">회원가입</a>
+        </div>
+    </div>
+</body>
+</html>
