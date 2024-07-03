@@ -11,7 +11,23 @@
         <p>환영합니다, <span th:text="${user.username}"></span>!</p>
         <p>이메일: <span th:text="${user.email}"></span></p>
         <p>접속 IP: <span th:text="${remoteAddr}"></span></p>
-        <p>접속 헤더: <span th:text="${userAgent}"></span></p>
+        
+        <h3>접속 헤더 정보:</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>헤더 이름</th>
+                    <th>헤더 값</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="header : ${#httpServletRequest.getHeaderNames()}">
+                    <td th:text="${header}"></td>
+                    <td th:text="${#httpServletRequest.getHeader(header)}"></td>
+                </tr>
+            </tbody>
+        </table>
+        
         <a href="/logout" class="btn btn-primary">로그아웃</a>
         <form action="/withdraw" method="post" class="mt-4">
             <button type="submit" class="btn btn-danger">회원탈퇴</button>

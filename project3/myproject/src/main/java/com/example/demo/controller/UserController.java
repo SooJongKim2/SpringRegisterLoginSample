@@ -8,7 +8,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
+import java.util.Enumeration;
 @Controller
 public class UserController {
     @Autowired
@@ -52,7 +52,14 @@ public class UserController {
     
         // 접속 정보 모델에 추가
         model.addAttribute("remoteAddr", request.getRemoteAddr());
-        model.addAttribute("userAgent", request.getHeader("User-Agent"));
+    
+        // 모든 헤더 정보를 모델에 추가
+        Enumeration<String> headerNames = request.getHeaderNames();
+        while (headerNames.hasMoreElements()) {
+            String headerName = headerNames.nextElement();
+            String headerValue = request.getHeader(headerName);
+            model.addAttribute(headerName, headerValue);
+        }
     
         return "home";
     }
